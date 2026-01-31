@@ -5,15 +5,14 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Instagram } from 'lucide-react';
 
-const instagramImages = [
-  'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=400&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=400&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=400&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=400&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=400&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=400&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=400&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=400&auto=format&fit=crop',
+// Instagram posts/reels - only need the post ID
+const instagramPosts = [
+  'DNfgRmNsDJM',
+  'DMK2JhjK1vI',
+  'DT0Jr8MDxXi',
+  'DLrOl4JhgwV',
+  'DNQDFHLoTip',
+  'DSxgs-tiK2D',
 ];
 
 export default function InstagramSection() {
@@ -32,31 +31,44 @@ export default function InstagramSection() {
           <div className="inline-flex items-center gap-3 mb-4">
             <Instagram className="w-8 h-8 text-primary" />
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-primary">
-              {'@HerikSalon'}
+              @HerikFamilySalon
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {'Follow Our Style Journey'}
+            Follow Our Style Journey
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-          {instagramImages.map((image, index) => (
+        {/* Instagram Grid - Clean media only */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-7xl mx-auto">
+          {instagramPosts.map((postId, index) => (
             <motion.a
               key={index}
-              href="#"
-              className="relative aspect-square overflow-hidden rounded-2xl group cursor-pointer"
-              initial={{ opacity: 0, scale: 0.8 }}
+              href={`https://www.instagram.com/reel/${postId}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative aspect-square overflow-hidden rounded-2xl group cursor-pointer bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 p-[2px]"
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <img
-                src={image || "/placeholder.svg"}
-                alt={`Instagram post ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <Instagram className="w-8 h-8 text-white" />
+              <div className="w-full h-full bg-black rounded-2xl overflow-hidden relative">
+                <iframe
+                  src={`https://www.instagram.com/p/${postId}/embed/captioned`}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  scrolling="no"
+                  allowTransparency={true}
+                  style={{
+                    transform: 'scale(1.5) translateY(-15%)',
+                    transformOrigin: 'center center',
+                  }}
+                />
+                
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                  <Instagram className="w-8 h-8 text-white" />
+                </div>
               </div>
             </motion.a>
           ))}
@@ -69,10 +81,12 @@ export default function InstagramSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <a
-            href="#"
+            href="https://www.instagram.com/herikfamilysalon/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium text-lg transition-colors duration-300"
           >
-            {'View More on Instagram'}
+            View More on Instagram
             <Instagram className="w-5 h-5" />
           </a>
         </motion.div>

@@ -139,3 +139,38 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Instagram Media Grid Styles */
+
+/* Clean image display without overlays */
+.instagram-grid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Smooth transitions */
+.instagram-grid a {
+  transition: transform 0.3s ease-in-out;
+}
+
+.instagram-grid a:hover {
+  transform: translateY(-2px);
+}
+
+/* Remove any default image borders or outlines */
+img {
+  border: none;
+  outline: none;
+}
+
+/* Ensure images load properly */
+img[src] {
+  opacity: 1;
+}
+
+img:not([src]) {
+  opacity: 0.5;
+  background: #f0f0f0;
+}
