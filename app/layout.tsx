@@ -39,7 +39,7 @@ export default function RootLayout({
     <html lang="en" className={`${_playfair.variable} ${_inter.variable}`}>
       <body className={`font-sans antialiased`}>
         {children}
-        <Analytics />
+        {/* <Analytics /> */}
       </body>
     </html>
   )

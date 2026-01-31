@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Card } from '@/components/ui/card';
+import serviceImage from '@/images/service-last-image.png';
 
 const services = [
   {
@@ -35,6 +36,7 @@ const services = [
     title: 'Hair Treatments',
     description: 'Restore and strengthen your hair with our deep conditioning treatments and keratin services.',
     image: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=2574&auto=format&fit=crop',
+    // image: serviceImage.src,
   },
 ];
 

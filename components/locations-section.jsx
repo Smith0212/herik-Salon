@@ -9,28 +9,34 @@ import { MapPin, Phone } from 'lucide-react';
 
 const locations = [
   {
-    name: 'Herik Salon - Downtown',
-    area: 'Central Business District',
-    address: '123 Main Street, City Center',
-    phone: '+1 (555) 123-4567',
+    name: 'Herik Family Salon - Nikol',
+    area: 'Bhagwat elysium, Nikol,',
+    address: 'Ahmedabad, Gujarat 380049',
+    phone: '09898838154',
   },
   {
-    name: 'Herik Salon - Northside',
-    area: 'North Shopping Plaza',
-    address: '456 North Avenue, Plaza Mall',
-    phone: '+1 (555) 234-5678',
+    name: 'Herik Family Salon - New India Colony',
+    area: 'Basant Bahar Cross Rd, Ankur Chokadi,',
+    address: 'Ahmedabad, Gujarat 380049',
+    phone: '07698453000',
   },
   {
-    name: 'Herik Salon - Westend',
-    area: 'West End Square',
-    address: '789 West Boulevard, Suite 100',
-    phone: '+1 (555) 345-6789',
+    name: 'Herik hair studio - Nava Naroda',
+    area: 'Fortune Plaza, 118, near Mango Cinema, behind Galaxy Bunglows,',
+    address: 'Ahmedabad, Gujarat 382350',
+    phone: '01234567891',
   },
   {
-    name: 'Herik Salon - Eastgate',
-    area: 'Eastgate Shopping Center',
-    address: '321 East Parkway, Level 2',
-    phone: '+1 (555) 456-7890',
+    name: 'Herik Family Salon - Motera',
+    area: 'Shop Number 211, Central By Sangath Ipl, Near Lake & Garden, Next Pvr Cinema, Koteshwar Bhat Road,',
+    address: 'Ahmedabad, Gujarat 380005',
+    phone: '09876543210',
+  },
+  {
+    name: '9/10 HERIK FAMILY SALON -  New India Colony',
+    area: 'Divine International School road, near Rushikeshn ramani garden,',
+    address: 'Ahmedabad, Gujarat 380049',
+    phone: '09998262358',
   },
 ];
 
@@ -65,7 +71,7 @@ export default function LocationsSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {locations.map((location, index) => (
             <motion.div
               key={location.name}

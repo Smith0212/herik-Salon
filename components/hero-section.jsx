@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+// import images from images folder
+import heroImage from '@/images/hero-image-gray.png';
 
 export default function HeroSection() {
   return (
@@ -15,7 +17,8 @@ export default function HeroSection() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-transparent z-10" />
         <img
-          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2574&auto=format&fit=crop"
+          // src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2574&auto=format&fit=crop"
+          src={heroImage.src}
           alt="Modern salon interior"
           className="w-full h-full object-cover"
         />

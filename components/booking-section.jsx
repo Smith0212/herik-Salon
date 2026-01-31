@@ -7,6 +7,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import bookingImage from '@/images/booking-image-gray.png';
+// import heroImage from '@/images/hero-image-gray.png';
+
 
 export default function BookingSection() {
   const ref = useRef(null);
@@ -28,7 +31,8 @@ export default function BookingSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2574&auto=format&fit=crop"
+          // src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2574&auto=format&fit=crop"
+          src={bookingImage.src}
           alt="Salon interior"
           className="w-full h-full object-cover"
         />

@@ -8,28 +8,28 @@ import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Johnson',
-    review: 'Absolutely love my new look! The stylists at Herik are true artists. They listened to what I wanted and delivered beyond my expectations.',
+    name: 'Palak Vyas',
+    review: 'I was served by Akash. It was my first time for hair colour and I was very nervous. He took the initiative and guided me through the process and made me comfortable to take my decision. I am absolutely in love with final results and their services. I highly recommend this place !!!',
     rating: 5,
   },
   {
-    name: 'Michael Chen',
-    review: 'Best salon experience I\'ve ever had. Professional, clean, and the attention to detail is incredible. Highly recommend!',
+    name: 'Maulik patel',
+    review: 'I’ve been visiting Herik Hair Studio for the past 7 years, and the experience has consistently been outstanding. The entire team of 10–12 skilled hair artists, including the owner Mr. Ravi Bhatia, who is among the top professionals in the field, is highly skilled, cooperative, and professional. \nSpecial thanks to Mr. Bhatia for maintaining such high standards and creating a welcoming, hygienic environment. \nHighly recommended for anyone seeking quality service and a truly satisfying salon experience. \nThank u to the entire team at Herik Hair Studio.',
     rating: 5,
   },
   {
-    name: 'Emma Williams',
-    review: 'The bridal makeup service was phenomenal. I felt like a princess on my wedding day. Thank you Herik team!',
+    name: 'Hema Magecha',
+    review: 'It was such a great experience with all services.  The team is very knowledgeable. We did massage/facials/meni pedi/haircut.  Thank u to all Hericks, Team. Can\'t wait for the next visit.',
     rating: 5,
   },
   {
-    name: 'David Martinez',
-    review: 'Great beard grooming service. The barbers really know their craft. I always leave feeling refreshed and looking sharp.',
+    name: 'Monika Yadav',
+    review: 'Today i took a service from herik salon we attended by khushboo and shalu both are very proffesional and expert.. we are very happy and satisfied after services...highly recommeded....😃 …',
     rating: 5,
   },
   {
-    name: 'Lisa Anderson',
-    review: 'The hair coloring was perfect! Natural-looking highlights and the stylist gave me great advice on maintenance.',
+    name: 'Saanvi',
+    review: 'I had an excellent experience with Kaif. He is professional, skilled, and understands exactly what suits your face and style. My haircut turned out perfect, and I received many compliments. Highly recommend Kaif for ladies’ haircut.',
     rating: 5,
   },
 ];
@@ -75,7 +75,7 @@ export default function TestimonialsSection() {
                   <Card className="p-8 md:p-12 bg-card rounded-3xl shadow-xl">
                     <div className="flex gap-1 mb-6 justify-center">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-6 h-6 fill-accent text-accent" />
+                        <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
                     <p className="text-lg md:text-xl text-foreground leading-relaxed text-center mb-8 italic">
