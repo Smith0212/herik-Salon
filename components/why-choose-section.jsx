@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Sparkles, Award, Shield, Heart } from 'lucide-react';
 
 const features = [
@@ -31,6 +31,7 @@ const features = [
 export default function WhyChooseSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [activeFeature, setActiveFeature] = useState(null);
 
   return (
     <section ref={ref} className="py-20 md:py-32 bg-background">
@@ -60,8 +61,15 @@ export default function WhyChooseSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-accent/50 mb-6 group hover:bg-primary hover:scale-110 transition-all duration-300">
-                  <Icon className="w-10 h-10 text-primary group-hover:text-white transition-colors duration-300" />
+                <div 
+                  className={`inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 group hover:bg-primary hover:scale-110 transition-all duration-300 cursor-pointer ${
+                    activeFeature === index ? 'bg-primary scale-110' : 'bg-accent/50'
+                  }`}
+                  onClick={() => setActiveFeature(activeFeature === index ? null : index)}
+                >
+                  <Icon className={`w-10 h-10 transition-colors duration-300 ${
+                    activeFeature === index ? 'text-white' : 'text-primary group-hover:text-white'
+                  }`} />
                 </div>
                 <h3 className="font-serif text-2xl font-bold text-primary mb-4">
                   {feature.title}

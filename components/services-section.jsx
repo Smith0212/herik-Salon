@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Card } from '@/components/ui/card';
 // import serviceImage from '@/images/service-last-image.png';
 
@@ -43,6 +43,7 @@ const services = [
 export default function ServicesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [activeService, setActiveService] = useState(null);
 
   return (
     <section ref={ref} id="services" className="py-20 md:py-32 bg-accent/20">
@@ -69,23 +70,38 @@ export default function ServicesSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="group relative h-[400px] overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer">
+              <Card 
+                className={`group relative h-[400px] overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer ${
+                  activeService === index ? 'shadow-2xl' : ''
+                }`}
+                onClick={() => setActiveService(activeService === index ? null : index)}
+              >
                 {/* Background Image */}
                 <div className="absolute inset-0">
                   <img
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className={`w-full h-full object-cover transition-transform duration-700 ${
+                      activeService === index ? 'scale-110' : 'group-hover:scale-110'
+                    }`}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                  <div className={`absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-80 transition-opacity duration-500 ${
+                    activeService === index ? 'opacity-90' : 'group-hover:opacity-90'
+                  }`} />
                 </div>
 
                 {/* Content */}
                 <div className="relative h-full flex flex-col justify-end p-8 text-white">
-                  <h3 className="font-serif text-3xl font-bold mb-3 group-hover:translate-y-[-8px] transition-transform duration-500">
+                  <h3 className={`font-serif text-3xl font-bold mb-3 transition-transform duration-500 ${
+                    activeService === index ? 'translate-y-[-8px]' : 'group-hover:translate-y-[-8px]'
+                  }`}>
                     {service.title}
                   </h3>
-                  <p className="text-white/90 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  <p className={`text-white/90 leading-relaxed transition-all duration-500 transform ${
+                    activeService === index 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0'
+                  }`}>
                     {service.description}
                   </p>
                 </div>

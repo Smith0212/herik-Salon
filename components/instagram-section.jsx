@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Instagram } from 'lucide-react';
 
 // Instagram posts/reels - only need the post ID
@@ -18,6 +18,7 @@ const instagramPosts = [
 export default function InstagramSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [activePost, setActivePost] = useState(null);
 
   return (
     <section ref={ref} className="py-20 md:py-32 bg-background">
@@ -44,13 +45,23 @@ export default function InstagramSection() {
           {instagramPosts.map((postId, index) => (
             <motion.a
               key={index}
-              href={`https://www.instagram.com/reel/${postId}/`}
+              href={`https://www.instagram.com/p/${postId}/`}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative aspect-square overflow-hidden rounded-2xl group cursor-pointer bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 p-[2px]"
+              className={`relative aspect-square overflow-hidden rounded-2xl group cursor-pointer bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 p-[2px] ${
+                activePost === index ? 'ring-2 ring-primary' : ''
+              }`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              onClick={(e) => {
+                e.preventDefault();
+                if (activePost === index) {
+                  window.open(`https://www.instagram.com/p/${postId}/`, '_blank');
+                } else {
+                  setActivePost(index);
+                }
+              }}
             >
               <div className="w-full h-full bg-black rounded-2xl overflow-hidden relative">
                 <iframe
@@ -66,7 +77,9 @@ export default function InstagramSection() {
                 />
                 
                 {/* Hover overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 flex items-end justify-center pb-6 ${
+                  activePost === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`}>
                   <Instagram className="w-8 h-8 text-white" />
                 </div>
               </div>

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone } from 'lucide-react';
@@ -50,6 +50,7 @@ const locations = [
 export default function LocationsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [activeLocation, setActiveLocation] = useState(null);
 
   return (
     <section ref={ref} id="locations" className="py-20 md:py-32 bg-accent/20 relative overflow-hidden">
@@ -86,7 +87,14 @@ export default function LocationsSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="p-6 h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-card border-border/50 rounded-2xl">
+              <Card 
+                className={`p-6 h-full transition-all duration-300 bg-card border-border/50 rounded-2xl cursor-pointer ${
+                  activeLocation === index 
+                    ? 'shadow-xl -translate-y-2' 
+                    : 'hover:shadow-xl hover:-translate-y-2'
+                }`}
+                onClick={() => setActiveLocation(activeLocation === index ? null : index)}
+              >
                 <div className="space-y-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-primary" />
@@ -111,8 +119,15 @@ export default function LocationsSection() {
 
                   <Button
                     variant="outline"
-                    className="w-full rounded-full hover:bg-primary hover:text-white transition-all duration-300 bg-transparent"
-                    onClick={() => window.open(location.directionsLink, "_blank")}
+                    className={`w-full rounded-full transition-all duration-300 ${
+                      activeLocation === index 
+                        ? 'bg-primary text-white' 
+                        : 'bg-transparent hover:bg-primary hover:text-white'
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Prevent card click when button is clicked
+                      window.open(location.directionsLink);
+                    }}
                   >
                     <MapPin className="w-4 h-4 mr-2" />
                     Get Directions

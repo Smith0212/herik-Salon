@@ -1,8 +1,10 @@
 'use client';
 
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Footer() {
+  const [activeSocial, setActiveSocial] = useState(null);
   const scrollToSection = (sectionId) => {
     if (sectionId === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -26,19 +28,36 @@ export default function Footer() {
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                  activeSocial === 'facebook' ? 'bg-white/20' : 'bg-white/10 hover:bg-white/20'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveSocial(activeSocial === 'facebook' ? null : 'facebook');
+                }}
               >
                 <Facebook className="w-5 h-5" />
               </a>
               <a
                 href="https://www.instagram.com/herikfamilysalon/"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                  activeSocial === 'instagram' ? 'bg-white/20' : 'bg-white/10 hover:bg-white/20'
+                }`}
+                onClick={() => setActiveSocial(activeSocial === 'instagram' ? null : 'instagram')}
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ${
+                  activeSocial === 'twitter' ? 'bg-white/20' : 'bg-white/10 hover:bg-white/20'
+                }`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveSocial(activeSocial === 'twitter' ? null : 'twitter');
+                }}
               >
                 <Twitter className="w-5 h-5" />
               </a>

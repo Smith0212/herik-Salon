@@ -41,6 +41,7 @@ export default function GallerySection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [selectedImage, setSelectedImage] = useState(null);
+  const [activeImage, setActiveImage] = useState(null);
 
   return (
     <>
@@ -64,18 +65,30 @@ export default function GallerySection() {
             {galleryImages.map((image, index) => (
               <motion.div
                 key={index}
-                className="relative aspect-square overflow-hidden rounded-2xl cursor-pointer group"
+                className={`relative aspect-square overflow-hidden rounded-2xl cursor-pointer group ${
+                  activeImage === index ? 'ring-2 ring-primary' : ''
+                }`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                onClick={() => setSelectedImage(image)}
+                onClick={(e) => {
+                  if (activeImage === index) {
+                    setSelectedImage(image);
+                  } else {
+                    setActiveImage(index);
+                  }
+                }}
               >
                 <img
                   src={image || "/placeholder.svg"}
                   alt={`Gallery image ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className={`w-full h-full object-cover transition-transform duration-500 ${
+                    activeImage === index ? 'scale-110' : 'group-hover:scale-110'
+                  }`}
                 />
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className={`absolute inset-0 bg-primary/20 transition-opacity duration-300 ${
+                  activeImage === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`} />
               </motion.div>
             ))}
           </div>

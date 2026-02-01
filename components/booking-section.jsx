@@ -14,6 +14,7 @@ import bookingImage from '@/images/booking-image-gray.png';
 export default function BookingSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [activeButton, setActiveButton] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -116,7 +117,12 @@ export default function BookingSection() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-primary hover:bg-primary/90 text-white h-14 text-lg rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
+                className={`w-full bg-primary text-white h-14 text-lg rounded-xl shadow-lg transition-all duration-300 ${
+                  activeButton === 'book' 
+                    ? 'shadow-xl scale-[1.02] bg-primary/90' 
+                    : 'hover:shadow-xl hover:scale-[1.02] hover:bg-primary/90'
+                }`}
+                onClick={() => setActiveButton(activeButton === 'book' ? null : 'book')}
               >
                 Book Now
               </Button>

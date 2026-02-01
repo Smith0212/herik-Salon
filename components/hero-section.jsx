@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
 // import images from images folder
 // import heroImage from '@/images/hero-image-gray.png';
 
@@ -12,6 +13,7 @@ export default function HeroSection() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const [activeButton, setActiveButton] = useState(null);
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax */}
@@ -57,17 +59,31 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button
-            onClick={() => scrollToSection('contact')}
+            onClick={() => {
+              scrollToSection('contact');
+              setActiveButton(activeButton === 'book' ? null : 'book');
+            }}
             size="lg"
-            className="bg-primary text-white hover:bg-primary/90 px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            className={`bg-primary text-white px-8 py-6 text-lg rounded-full shadow-xl transition-all duration-300 ${
+              activeButton === 'book' 
+                ? 'shadow-2xl scale-105 bg-primary/90' 
+                : 'hover:shadow-2xl hover:scale-105 hover:bg-primary/90'
+            }`}
           >
             Book Appointment
           </Button>
           <Button
-            onClick={() => scrollToSection('services')}
+            onClick={() => {
+              scrollToSection('services');
+              setActiveButton(activeButton === 'services' ? null : 'services');
+            }}
             size="lg"
             variant="outline"
-            className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            className={`bg-white/10 backdrop-blur-sm text-white border-white/30 px-8 py-6 text-lg rounded-full shadow-xl transition-all duration-300 ${
+              activeButton === 'services' 
+                ? 'shadow-2xl scale-105 bg-white/20' 
+                : 'hover:bg-white/20 hover:shadow-2xl hover:scale-105'
+            }`}
           >
             View Services
           </Button>

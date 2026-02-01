@@ -38,6 +38,11 @@ export default function TestimonialsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,6 +50,29 @@ export default function TestimonialsSection() {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      // Swipe left - next testimonial
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }
+    if (isRightSwipe) {
+      // Swipe right - previous testimonial
+      setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    }
+  };
 
   return (
     <section ref={ref} id="testimonials" className="py-20 md:py-32 bg-accent/20">
@@ -64,7 +92,12 @@ export default function TestimonialsSection() {
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="overflow-hidden">
+          <div 
+            className="overflow-hidden"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
             <motion.div
               className="flex"
               animate={{ x: `-${currentIndex * 100}%` }}
@@ -72,16 +105,18 @@ export default function TestimonialsSection() {
             >
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="w-full flex-shrink-0 px-4">
-                  <Card className="p-8 md:p-12 bg-card rounded-3xl shadow-xl">
-                    <div className="flex gap-1 mb-6 justify-center">
+                  <Card className="p-8 md:p-12 bg-card rounded-3xl shadow-xl h-96 flex flex-col">
+                    <div className="flex gap-1 mb-6 justify-center flex-shrink-0">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-                    <p className="text-lg md:text-xl text-foreground leading-relaxed text-center mb-8 italic">
-                      {`"${testimonial.review}"`}
-                    </p>
-                    <p className="text-center font-serif text-xl font-bold text-primary">
+                    <div className="flex-1 overflow-y-auto scrollbar-hide mb-6">
+                      <p className="text-lg md:text-xl text-foreground leading-relaxed text-center italic">
+                        {`"${testimonial.review}"`}
+                      </p>
+                    </div>
+                    <p className="text-center font-serif text-xl font-bold text-primary flex-shrink-0">
                       {testimonial.name}
                     </p>
                   </Card>
