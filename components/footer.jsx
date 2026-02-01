@@ -31,7 +31,7 @@ export default function Footer() {
                 <Facebook className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/herikfamilysalon/"
                 className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
               >
                 <Instagram className="w-5 h-5" />
@@ -113,16 +113,16 @@ export default function Footer() {
           <div>
             <h4 className="font-serif text-xl font-bold mb-4">{'Contact Us'}</h4>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
+              {/* <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
                 <span className="text-white/80">
                   {'123 Main Street, City Center'}
                 </span>
-              </li>
+              </li> */}
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 flex-shrink-0" />
-                <a href="tel:+15551234567" className="text-white/80 hover:text-white transition-colors duration-300">
-                  {'+1 (555) 123-4567'}
+                <a href="tel:09876543210" className="text-white/80 hover:text-white transition-colors duration-300">
+                  {'09876543210'}
                 </a>
               </li>
               <li className="flex items-center gap-3">

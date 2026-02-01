@@ -8,14 +8,31 @@ import { Menu, X } from 'lucide-react';
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Update scrolled state for background change
+      setIsScrolled(currentScrollY > 50);
+      
+      // Hide/show navigation based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 200) {
+        // Scrolling down and past hero section
+        setIsHidden(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsHidden(false);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -27,12 +44,14 @@ export default function Navigation() {
   const navLinks = ['Services', 'Gallery', 'Locations', 'Testimonials', 'Contact'];
 
   return (
-    <nav
+    <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white/95 backdrop-blur-md shadow-lg'
           : 'bg-transparent'
       }`}
+      animate={{ y: isHidden ? -100 : 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
@@ -129,6 +148,6 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }
