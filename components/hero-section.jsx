@@ -3,9 +3,15 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 // import images from images folder
-import heroImage from '@/images/hero-image-gray.png';
+// import heroImage from '@/images/hero-image-gray.png';
 
 export default function HeroSection() {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Parallax */}
@@ -18,7 +24,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-accent/20 to-transparent z-10" />
         <img
           // src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=2574&auto=format&fit=crop"
-          src={heroImage.src}
+          src="/images/hero-image-gray.png"
           alt="Modern salon interior"
           className="w-full h-full object-cover"
         />
@@ -51,12 +57,14 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button
+            onClick={() => scrollToSection('contact')}
             size="lg"
             className="bg-primary text-white hover:bg-primary/90 px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
           >
             Book Appointment
           </Button>
           <Button
+            onClick={() => scrollToSection('services')}
             size="lg"
             variant="outline"
             className="bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 px-8 py-6 text-lg rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"

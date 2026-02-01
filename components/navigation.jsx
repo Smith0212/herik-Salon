@@ -17,6 +17,13 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const navLinks = ['Services', 'Gallery', 'Locations', 'Testimonials', 'Contact'];
 
   return (
@@ -47,8 +54,11 @@ export default function Navigation() {
             {navLinks.map((link, index) => (
               <motion.a
                 key={link}
-                href={`#${link.toLowerCase()}`}
-                className={`font-medium transition-colors duration-300 hover:opacity-70 ${
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.toLowerCase());
+                }}
+                className={`font-medium transition-colors duration-300 hover:opacity-70 cursor-pointer ${
                   isScrolled ? 'text-foreground' : 'text-white'
                 }`}
                 initial={{ opacity: 0, y: -20 }}
@@ -64,6 +74,7 @@ export default function Navigation() {
               transition={{ duration: 0.5, delay: navLinks.length * 0.1 }}
             >
               <Button
+                onClick={() => scrollToSection('contact')}
                 className={`rounded-full px-6 ${
                   isScrolled
                     ? 'bg-primary text-white hover:bg-primary/90'
@@ -101,14 +112,17 @@ export default function Navigation() {
               {navLinks.map((link) => (
                 <a
                   key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className="block text-foreground hover:text-primary transition-colors duration-300 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.toLowerCase());
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block text-foreground hover:text-primary transition-colors duration-300 py-2 cursor-pointer"
                 >
                   {link}
                 </a>
               ))}
-              <Button className="w-full bg-primary text-white hover:bg-primary/90 rounded-full">
+              <Button onClick={() => { scrollToSection('contact'); setIsMobileMenuOpen(false); }} className="w-full bg-primary text-white hover:bg-primary/90 rounded-full">
                 Book Now
               </Button>
             </div>

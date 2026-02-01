@@ -3,6 +3,16 @@
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
+  const scrollToSection = (sectionId) => {
+    if (sectionId === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   return (
     <footer className="bg-primary text-white py-16">
       <div className="container mx-auto px-4">
@@ -40,27 +50,27 @@ export default function Footer() {
             <h4 className="font-serif text-xl font-bold mb-4">{'Quick Links'}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('home'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Home'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Services'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('gallery'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Gallery'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('locations'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Locations'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Contact'}
                 </a>
               </li>
@@ -72,27 +82,27 @@ export default function Footer() {
             <h4 className="font-serif text-xl font-bold mb-4">{'Our Services'}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Hair Styling'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Hair Coloring'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Skin & Facials'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Beard Grooming'}
                 </a>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors duration-300">
+                <a onClick={(e) => { e.preventDefault(); scrollToSection('services'); }} className="text-white/80 hover:text-white transition-colors duration-300 cursor-pointer">
                   {'Bridal Makeup'}
                 </a>
               </li>

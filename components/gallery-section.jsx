@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import gallery1 from '@/images/gallery1.png';
-import gallery2 from '@/images/gallery2.png';
-import gallery3 from '@/images/gallery3.png';
-import gallery4 from '@/images/gallery4.png';
-import gallery5 from '@/images/gallery5.png';
-import gallery6 from '@/images/gallery6.png';
-import gallery7 from '@/images/gallery7.png';
+// import gallery1 from '@/images/gallery1.png';
+// import gallery2 from '@/images/gallery2.png';
+// import gallery3 from '@/images/gallery3.png';
+// import gallery4 from '@/images/gallery4.png';
+// import gallery5 from '@/images/gallery5.png';
+// import gallery6 from '@/images/gallery6.png';
+// import gallery7 from '@/images/gallery7.png';
 // import gallery8 from '@/images/gallery8.png';
 
 
@@ -26,13 +26,13 @@ import gallery7 from '@/images/gallery7.png';
 // ];
 
 const galleryImages = [
-  gallery1.src,
-  gallery2.src,
-  gallery3.src,
-  gallery4.src,
-  gallery5.src,
-  gallery6.src,
-  gallery7.src,
+  '/images/gallery1.png',
+  '/images/gallery2.png',
+  '/images/gallery3.png',
+  '/images/gallery4.png',
+  '/images/gallery5.png',
+  '/images/gallery6.png',
+  '/images/gallery7.png',
   // gallery8.src,
   'https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2574&auto=format&fit=crop',
 ];
@@ -44,7 +44,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section ref={ref} className="py-20 md:py-32 bg-background">
+      <section ref={ref} id="gallery" className="py-20 md:py-32 bg-background">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"

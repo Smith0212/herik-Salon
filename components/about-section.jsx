@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import aboutImage from '@/images/about-image.png';
+// import aboutImage from '@/images/about-image.png';
 
 export default function AboutSection() {
   const ref = useRef(null);
@@ -22,7 +22,7 @@ export default function AboutSection() {
           >
             <img
               // src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2569&auto=format&fit=crop"
-              src={aboutImage.src}
+              src="/images/about-image.png"
               alt="Professional stylist at work"
               className="w-full h-full object-cover"
             />

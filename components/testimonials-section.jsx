@@ -47,7 +47,7 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section ref={ref} className="py-20 md:py-32 bg-accent/20">
+    <section ref={ref} id="testimonials" className="py-20 md:py-32 bg-accent/20">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"

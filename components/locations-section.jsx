@@ -13,39 +13,46 @@ const locations = [
     area: 'Bhagwat elysium, Nikol,',
     address: 'Ahmedabad, Gujarat 380049',
     phone: '09898838154',
+    directionsLink: 'https://www.google.com/maps/dir/?api=1&destination=23.0544869,72.6676376'
   },
   {
     name: 'Herik Family Salon - New India Colony',
     area: 'Basant Bahar Cross Rd, Ankur Chokadi,',
     address: 'Ahmedabad, Gujarat 380049',
     phone: '07698453000',
+    directionsLink: 'https://www.google.com/maps/dir/?api=1&destination=23.0524899,72.6788993'
   },
   {
     name: 'Herik hair studio - Nava Naroda',
     area: 'Fortune Plaza, 118, near Mango Cinema, behind Galaxy Bunglows,',
     address: 'Ahmedabad, Gujarat 382350',
     phone: '01234567891',
+    directionsLink: 'https://www.google.com/maps/dir/?api=1&destination=23.0640525,72.6775948'
   },
   {
     name: 'Herik Family Salon - Motera',
     area: 'Shop Number 211, Central By Sangath Ipl, Near Lake & Garden, Next Pvr Cinema, Koteshwar Bhat Road,',
     address: 'Ahmedabad, Gujarat 380005',
     phone: '09876543210',
+    directionsLink: 'https://www.google.com/maps/dir/?api=1&destination=23.0969516,72.6024874'
   },
   {
     name: '9/10 HERIK FAMILY SALON -  New India Colony',
     area: 'Divine International School road, near Rushikeshn ramani garden,',
     address: 'Ahmedabad, Gujarat 380049',
     phone: '09998262358',
+    directionsLink: 'https://www.google.com/maps/dir/?api=1&destination=23.0366652,72.6760089'
   },
 ];
+
+
 
 export default function LocationsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-20 md:py-32 bg-accent/20 relative overflow-hidden">
+    <section ref={ref} id="locations" className="py-20 md:py-32 bg-accent/20 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -105,9 +112,12 @@ export default function LocationsSection() {
                   <Button
                     variant="outline"
                     className="w-full rounded-full hover:bg-primary hover:text-white transition-all duration-300 bg-transparent"
+                    onClick={() => window.open(location.directionsLink, "_blank")}
                   >
+                    <MapPin className="w-4 h-4 mr-2" />
                     Get Directions
                   </Button>
+
                 </div>
               </Card>
             </motion.div>

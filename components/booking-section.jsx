@@ -27,7 +27,7 @@ export default function BookingSection() {
   };
 
   return (
-    <section ref={ref} className="relative py-20 md:py-32 overflow-hidden">
+    <section ref={ref} id="contact" className="relative py-20 md:py-32 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img

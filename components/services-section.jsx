@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Card } from '@/components/ui/card';
-import serviceImage from '@/images/service-last-image.png';
+// import serviceImage from '@/images/service-last-image.png';
 
 const services = [
   {
@@ -45,7 +45,7 @@ export default function ServicesSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-20 md:py-32 bg-accent/20">
+    <section ref={ref} id="services" className="py-20 md:py-32 bg-accent/20">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
